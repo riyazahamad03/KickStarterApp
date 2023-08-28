@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Card } from "semantic-ui-react";
+import { Card, Grid } from "semantic-ui-react";
 import Layout from "../../component/layout";
 import Campaign from "../../ethereum/campaign";
 import web3 from "../../ethereum/web3";
+import ContributeForm from "../../component/ContributeForm";
 class CampaignShow extends Component {
   static async getInitialProps(props) {
     // console.log(props.query.address);
@@ -10,8 +11,9 @@ class CampaignShow extends Component {
     const summary = await campaign.methods.getSummary().call();
     // console.log(summary);
     return {
+      address: props.query.address,
       minumumContribution: summary[0],
-      Balance: summary[1],
+      balance: summary[1],
       requestCount: summary[2],
       approversCount: summary[3],
       manager: summary[4],
@@ -26,6 +28,7 @@ class CampaignShow extends Component {
       requestCount,
       approversCount,
     } = this.props;
+    const balanceInWei = web3.utils.toWei(balance.toString(), "ether");
     const items = [
       {
         header: manager,
@@ -50,7 +53,7 @@ class CampaignShow extends Component {
         description: " A number of people who have already donated",
       },
       {
-        header: web3.utils.toWei((balance), "ether"),
+        header: web3.utils.fromWei(balance, "ether"),
         meta: "Campaign Balance (ether)",
         description:
           "The balance represent how much ether left in this account",
@@ -63,7 +66,13 @@ class CampaignShow extends Component {
     return (
       <Layout>
         <h3>Campaign Show</h3>
-        {this.renderCards()}
+        <Grid>
+          <Grid.Column width={10}>{this.renderCards()}</Grid.Column>
+
+          <Grid.Column width={6}>
+            <ContributeForm address={this.props.address} />
+          </Grid.Column>
+        </Grid>
       </Layout>
     );
   }
