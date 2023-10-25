@@ -9,8 +9,8 @@ Requirements:
 following functionalities allowed
 
 * User Can create Campaign(request)
-* user can contribute the campaign
-* User can vote 
+* user can contribute to the campaign
+* Users who have contributed can vote to that campaign respectively
 
 <img width="958" alt="Screenshot 2023-10-25 194346" src="https://github.com/riyazahamad03/KickStarterApp/assets/63860303/7d7cb59c-b78a-4931-a490-b0697e62eae1">
 
