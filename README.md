@@ -1,6 +1,9 @@
 # KickStarterApp
 blockchain based kickstarter app 
 
+Requirements:
+  * Metamask account logged
+  * minimum testnet ether required (https://goerlifaucet.com/) get from here by pasting your address
 following functionalities allowed
 
 * User Can create Campaign(request)
